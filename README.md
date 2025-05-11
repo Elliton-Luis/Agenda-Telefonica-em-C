@@ -1,5 +1,4 @@
 # CallTree
----
 Sobre o Projeto
 
 ### O CallTree é um sistema de agenda telefônica desenvolvido em linguagem C, utilizando a estrutura de Árvore Binária de Busca (BST) para armazenar, organizar e gerenciar contatos de forma eficiente. O programa permite cadastrar, buscar, listar e remover contatos, com persistência de dados em arquivo de texto.
