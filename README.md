@@ -1,19 +1,26 @@
-#CallTree
+# CallTree
+---
+Sobre o Projeto
 
-##Repositório para o projeto CallTree, um sistema de agenda telefônica desenvolvido em linguagem C, utilizando árvore binária de busca (BST) para armazenamento e organização de contatos.
-Características do Programa
+### O CallTree é um sistema de agenda telefônica desenvolvido em linguagem C, utilizando a estrutura de Árvore Binária de Busca (BST) para armazenar, organizar e gerenciar contatos de forma eficiente. O programa permite cadastrar, buscar, listar e remover contatos, com persistência de dados em arquivo de texto.
 
-    Código desenvolvido em linguagem C
+Características
 
-    Estrutura de dados baseada em Árvore Binária de Busca (BST)
+ *   Aplicação escrita em C.
 
-    Operações acessadas via terminal
+ *   Estrutura de dados baseada em **Árvore Binária de Busca (BST).**
 
-    Funções CRUD (Create, Read, Delete) de contatos telefônicos
+ *   Interface de uso via terminal.
 
-    Persistência de dados em arquivo listaTelefonica.txt, garantindo que os contatos sejam mantidos entre execuções
+ *   Funcionalidades CRUD para contatos telefônicos.
 
-Estrutura de Dados
+ *  Persistência automática em arquivo listaTelefonica.txt, mantendo os contatos entre execuções.
+
+---
+
+Estrutura de Dados Utilizada
+
+### O projeto utiliza a seguinte estrutura para representar os contatos:
 
 typedef struct Contact {
     char name[20];
@@ -22,59 +29,71 @@ typedef struct Contact {
     struct Contact* right;
 } Contact;
 
-    Estrutura que representa um contato, contendo nome, telefone e ponteiros para os nós esquerdo e direito da árvore.
+### Cada contato armazena o nome, telefone e ponteiros para os nós esquerdo e direito da árvore, garantindo que a estrutura permaneça ordenada de acordo com os nomes cadastrados.
 
-Funções Principais
-Contact* createContact(char name[], char telephone[])
+#### Principais Funcionalidades
 
-Cria e inicializa um novo contato com os dados informados.
-Contact* insertContact(Contact* root, char name[], char telephone[])
+##### Função createContact
 
-Insere um contato na árvore binária de forma ordenada pelo nome.
-Contact* searchContact(Contact* root, char name[])
+Cria e inicializa um novo contato a partir do nome e telefone informados pelo usuário.
 
-Busca um contato pelo nome e exibe o número, caso encontrado.
-Contact* removeContact(Contact* root, char name[])
+##### Função insertContact
 
-Remove um contato da árvore, reorganizando os ponteiros conforme necessário.
-void listContacts(Contact* root)
+* Insere um novo contato na árvore, posicionando-o de forma ordenada pelo nome, respeitando as regras da árvore binária de busca.
 
-Percorre a árvore em ordem alfabética e exibe todos os contatos cadastrados.
-void saveContacts(Contact* root, const char* archiveName)
+##### Função searchContact
 
-Grava os contatos cadastrados no arquivo especificado, sobrescrevendo o conteúdo anterior.
-Contact* loadContacts(const char* archiveName, Contact* root)
+* Realiza a busca de um contato pelo nome, retornando o número de telefone correspondente, caso encontrado.
 
-Lê os contatos salvos no arquivo e os insere na árvore em memória.
-Menu Principal
+##### Função removeContact
 
-    Criar contato
+* Remove um contato da árvore, ajustando a estrutura para manter a ordenação e integridade da árvore após a exclusão.
 
-    Buscar contato
+##### Função listContacts
 
-    Listar contatos
+* Percorre a árvore binária em ordem alfabética (in-order) e exibe todos os contatos cadastrados.
 
-    Remover contato
+##### Função saveContacts
 
-    Sair e salvar
+* Salva todos os contatos da árvore no arquivo listaTelefonica.txt, sobrescrevendo o conteúdo anterior e garantindo a persistência dos dados.
 
+##### Função loadContacts
+
+* Carrega os contatos previamente salvos no arquivo listaTelefonica.txt para a estrutura em memória, permitindo continuidade entre execuções.
+
+---
+
+### Menu Principal do Programa
+
+O programa é controlado por um menu interativo via terminal, com as seguintes opções:
+
+* Criar contato
+
+* Buscar contato
+
+* Listar contatos
+
+* Remover contato
+
+* Sair e salvar
+
+Ao encerrar a aplicação, os dados são automaticamente salvos no arquivo de texto.
 Estrutura do Arquivo de Dados
 
-O arquivo listaTelefonica.txt armazena os contatos no seguinte formato:
+O arquivo **database.txt** é utilizado para armazenar os contatos registrados. O formato adotado é simples, onde cada contato ocupa duas linhas consecutivas:
 
-nome_do_contato
-telefone
-nome_do_contato
-telefone
-...
+* **nome_do_contato**
+* **telefone**
 
-Cada par de linhas corresponde a um contato.
+Este padrão se repete para cada contato armazenado.
 Compilação e Execução
 
-Para compilar:
+---
 
-gcc listaTelefonica.c -o listaTelefonica
+#### Para compilar o projeto, utilize o seguinte comando no terminal:
 
-Para executar:
+*gcc listaTelefonica.c -o listaTelefonica*
 
-./listaTelefonica
+#### Para executar o programa após a compilação:
+
+*./listaTelefonica*
