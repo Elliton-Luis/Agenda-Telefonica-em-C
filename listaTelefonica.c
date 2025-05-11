@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 
 typedef struct Contact{
@@ -50,8 +51,9 @@ Contact* searchContact(Contact* root,char name[]){
 }
 
 Contact* removeContact(Contact* root ,char name[]){
+    Contact* temp;
     if(root == NULL){
-        printf("Nenhum Contato a ser apagado");
+        printf("Nenhum Contato a ser apagado\n");
         return NULL;
     }
     if(strcmp(root->name,name) > 0 ){
@@ -60,24 +62,23 @@ Contact* removeContact(Contact* root ,char name[]){
         root->right = removeContact(root->right, name);
     }else{
         if(root->left == NULL){
-            Contact* temp;
             temp = root->right;
             free(root);
             printf("Contato removido com sucesso!\n");
+            root = temp;
             return temp;
         }else if(root->right == NULL){
-            Contact* temp;
             temp = root->left;
             free(root);
             printf("Contato removido com sucesso!\n");
+            root = temp;
             return temp;
         }else{
-            Contact* temp = root->right;
+            temp = root->right;
             while (temp->left != NULL) {
             temp = temp->left;
             }
         }
-        Contact* temp;
         strcpy(root->name, temp->name);
         strcpy(root->telephone, temp->telephone);
         root->right = removeContact(root->right, temp->name);
@@ -100,13 +101,35 @@ void options(){
     printf("2. Buscar contato\n");
     printf("3. Listar contatos\n");
     printf("4. Remover contato\n");
-    printf("0. Sair\n\n");
+    printf("0. Sair e Salvar\n\n");
+}
+
+void saveInOrder(Contact* node, FILE* archive) {
+    if (node != NULL) {
+        saveInOrder(node->left, archive);
+        fprintf(archive, "%s\n%s\n", node->name, node->telephone);
+        saveInOrder(node->right, archive);
+    }
+}
+
+
+void saveContacts(Contact* root, const char* archiveName) {
+    FILE* archive = fopen(archiveName, "w");
+    if (!archive) {
+        printf("Erro ao abrir o arquivo para salvar!\n");
+        return;
+    }
+
+    saveInOrder(root, archive);
+    fclose(archive);
 }
 
 Contact* loadContacts(const char* archiveName, Contact* root){
     FILE* archive = fopen(archiveName, "r");
     if(!archive){
-        return NULL;
+        archive = fopen(archiveName,"w");
+        fclose(archive);
+        return root;
     }
     char name[20]; 
     char telephone[20];
@@ -125,7 +148,6 @@ Contact* loadContacts(const char* archiveName, Contact* root){
     return root;
 }
 
-
 int main(){
     const char* database = "database.txt";
     int choice;
@@ -139,19 +161,28 @@ int main(){
         printf("Insira a sua Escolha: ");
         scanf("%d",&choice);
         if(choice == 1){
-            printf("Insira o seu nome: ");
+            printf("Insira o nome: ");
             scanf("%s",name);
-            printf("Insira o seu Telefone: ");
+            printf("Insira o Telefone(sem espaços): ");
             scanf("%s",telephone);
+            for(int i = 0; name[i];i++){
+                name[i] = tolower(name[i]);
+            }
             telephoneDirectory = insertContact(telephoneDirectory, name, telephone);
+            system("clear||cls"); 
         }
         if(choice == 2){
-            printf("Insira o seu nome: ");
+            printf("Insira o nome: ");
             scanf("%s",name);
+            system("clear||cls");
+            for(int i = 0; name[i];i++){
+                name[i] = tolower(name[i]);
+            }
             searchContact(telephoneDirectory, name);
         }
         if(choice == 3){
             if(telephoneDirectory == NULL){
+                system("clear||cls");
                 printf(".");
                 fflush(stdout);
                 sleep(1);
@@ -162,20 +193,25 @@ int main(){
                 fflush(stdout);
                 sleep(1);
                 printf("Nenhum Contato foi Encontrado\n\n");
-                sleep(2);
+                sleep(1);
             }else{
+                system("clear||cls");
                 listContacts(telephoneDirectory);
                 printf("\n");
             }
         }
         if(choice == 4){
-            printf("Insira o seu nome: ");
+            printf("Insira o nome: ");
             scanf("%s",name);
+            for(int i = 0; name[i];i++){
+                name[i] = tolower(name[i]);
+            }
             telephoneDirectory = removeContact(telephoneDirectory, name);
         }
-        else{
+        if(choice < 0 || choice > 4){
             printf("Insira uma opção válida\n");
             choice = 5;
         }
     }while(choice != 0);
+    saveContacts(telephoneDirectory, database);
 }
