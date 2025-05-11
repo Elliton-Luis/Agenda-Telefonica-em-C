@@ -81,7 +81,6 @@ O programa é controlado por um menu interativo *via terminal*, com as seguintes
 *4.Remover contato*
 
 *0.Sair e salvar*
-` 
 
 Ao encerrar a aplicação, os dados são automaticamente salvos no arquivo de texto.
 Estrutura do Arquivo de Dados
