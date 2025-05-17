@@ -6,28 +6,43 @@
 
 typedef struct Contact{
     char name[20];
-    char telephone[20];
+    char phone[20];
     struct Contact* left;
     struct Contact* right;
 } Contact;
 
-Contact* createContact(char name[],char telephone[]){
+void formatPhone(char* phone, char* formattedPhone) {
+    if (strlen(phone) != 11) {
+        strcpy(formattedPhone, phone);
+        return;
+    }
+
+    sprintf(formattedPhone, "(%c%c) %c%c%c%c%c-%c%c%c%c",
+        phone[0], phone[1],
+        phone[2], phone[3], phone[4], phone[5], phone[6],
+        phone[7], phone[8], phone[9], phone[10]);
+}
+
+Contact* createContact(char name[],char phone[]){
     Contact* contact = (Contact*) malloc(sizeof(Contact));
 
     strcpy(contact->name, name);
-    strcpy(contact->telephone, telephone);
+    strcpy(contact->phone, phone);
     contact->left = contact->right = NULL;
     return contact;
 }
 
-Contact* insertContact(Contact* root,char name[],char telephone[]){
+Contact* insertContact(Contact* root,char name[],char phone[]){
     if(root == NULL){
-        return createContact(name,telephone);
+        return createContact(name,phone);
+    }
+    if(strcmp(name,root->name) == 0){
+        printf("\nEsse nome já existe na nossa lista!!\n");
     }
     if(strcmp(name , root->name) < 0){
-        root->left = insertContact(root->left,name, telephone);
+        root->left = insertContact(root->left,name, phone);
     }else if(strcmp(name , root->name) > 0){
-        root->right = insertContact(root->right,name, telephone);
+        root->right = insertContact(root->right,name, phone);
     }else{
     }
     return root;
@@ -39,8 +54,10 @@ Contact* searchContact(Contact* root,char name[]){
         return NULL;
     }
     if(strcmp(root->name,name) == 0){
-        printf("O Numero de %s é %s\n\n",root->name,root->telephone);
-        return NULL;
+        char formattedPhone [20];
+        formatPhone(root->phone, formattedPhone);
+        printf("O Numero de %s é %s\n\n",root->name,formattedPhone);
+        return root;
     }
     if(strcmp(root->name,name) > 0 ){
         return searchContact(root->left,name);
@@ -64,13 +81,13 @@ Contact* removeContact(Contact* root ,char name[]){
         if(root->left == NULL){
             temp = root->right;
             free(root);
-            printf("Contato removido com sucesso!\n");
+            printf("\nContato removido com sucesso!\n");
             root = temp;
             return temp;
         }else if(root->right == NULL){
             temp = root->left;
             free(root);
-            printf("Contato removido com sucesso!\n");
+            printf("\nContato removido com sucesso!\n");
             root = temp;
             return temp;
         }else{
@@ -80,38 +97,96 @@ Contact* removeContact(Contact* root ,char name[]){
             }
         }
         strcpy(root->name, temp->name);
-        strcpy(root->telephone, temp->telephone);
+        strcpy(root->phone, temp->phone);
         root->right = removeContact(root->right, temp->name);
     }
     return root;
 }
 
+Contact* editContact(Contact* root, char name []){
+    if(root == NULL){
+        printf("O contato não foi encontrado\n\n");
+        return NULL;
+    }
+    if(strcmp(root->name,name) == 0){
+        int option = 0;
+        printf("Insira qual item você deseja Mudar:\n");
+        printf("1.Nome\n");
+        printf("2.Contato\n");
+        scanf("%d",&option);
+        getchar();
+        if (option == 1){
+                    printf("Nome atual: %s\n",root->name);
+                    char newname[50];
+                    printf("Insira o novo nome: ");
+                    fgets(newname,sizeof(newname),stdin);
+                    newname[strcspn(newname, "\n")] = '\0';
+                    for(int i = 0; newname[i];i++){
+                        newname[i] = tolower(newname[i]);
+                    }
+                    strcpy(root->name,newname);
+                    return NULL;
+                }
+                if (option == 2){
+                    printf("Número atual: %s\n",root->phone);
+                    char newphone[50];
+                    printf("Insira o novo telefone(somente números): ");
+                    fgets(newphone,sizeof(newphone),stdin);
+                    newphone[strcspn(newphone, "\n")] = '\0';
+                    strcpy(root->phone,newphone);
+                    return NULL;
+                }
+                else{
+                    printf("Opção Inválida");
+                }
+    }
+    if(strcmp(root->name,name) > 0 ){
+        return editContact(root->left,name);
+    }
+    else{
+        return editContact(root->right,name);
+    }
+}
+
+
 
 void listContacts(Contact* root){
     if(root != NULL){
+
         listContacts(root->left);
-        printf("Nome: %s\nTelefone: %s\n", root->name, root->telephone);
+        char formattedPhone [20];
+        formatPhone(root->phone, formattedPhone);
+        printf("Nome: %s\ntelefone: %s\n", root->name, formattedPhone);
+        printf("------------------\n");
         listContacts(root->right);
     }
 }
 
 void options(){
-    printf("---- Opções -----\n");
-    printf("1. Criar contato\n");
-    printf("2. Buscar contato\n");
-    printf("3. Listar contatos\n");
-    printf("4. Remover contato\n");
+    printf("----- Opções -----\n");
+    printf("1. Criar Contato\n");
+    printf("2. Buscar Contato\n");
+    printf("3. Listar Contatos\n");
+    printf("4. Remover Contato\n");
+    printf("5. Limpar Terminal\n");
+    printf("6. Contar Contatos\n");
+    printf("7. Editar Contato\n");   
     printf("0. Sair e Salvar\n\n");
 }
 
-void saveInOrder(Contact* node, FILE* archive) {
-    if (node != NULL) {
-        saveInOrder(node->left, archive);
-        fprintf(archive, "%s\n%s\n", node->name, node->telephone);
-        saveInOrder(node->right, archive);
+void saveInOrder(Contact* root, FILE* archive) {
+    if (root != NULL) {
+        saveInOrder(root->left, archive);
+        fprintf(archive, "%s\n%s\n", root->name, root->phone);
+        saveInOrder(root->right, archive);
     }
 }
 
+int countContacts(Contact* root){
+    if(root == NULL){
+        return 0;
+    }
+    return 1 + countContacts(root->left) + countContacts(root->right);}
 
 void saveContacts(Contact* root, const char* archiveName) {
     FILE* archive = fopen(archiveName, "w");
@@ -124,6 +199,21 @@ void saveContacts(Contact* root, const char* archiveName) {
     fclose(archive);
 }
 
+void clearTerminal(){
+    system("clear || cls");
+}
+
+void listContactsReverse(Contact* root){
+    if(root != NULL){
+        listContactsReverse(root->right);
+        char formattedPhone [20];
+        formatPhone(root->phone, formattedPhone);
+        printf("nome: %s\ntelefone: %s\n",root->name,formattedPhone);
+        printf("-------------------------\n");
+        listContactsReverse(root->left);
+    }
+}
+
 Contact* loadContacts(const char* archiveName, Contact* root){
     FILE* archive = fopen(archiveName, "r");
     if(!archive){
@@ -131,8 +221,8 @@ Contact* loadContacts(const char* archiveName, Contact* root){
         fclose(archive);
         return root;
     }
-    char name[20]; 
-    char telephone[20];
+    char name[50]; 
+    char phone[20];
     char line[25];
 
     while (fgets(name, sizeof(name), archive) != NULL) {
@@ -140,8 +230,8 @@ Contact* loadContacts(const char* archiveName, Contact* root){
 
         if (fgets(line, sizeof(line), archive) != NULL) {
             line[strcspn(line, "\n")] = '\0';
-            strcpy(telephone, line);
-            root = insertContact(root, name, telephone);
+            strcpy(phone, line);
+            root = insertContact(root, name, phone);
         }
     }
     fclose(archive);
@@ -151,38 +241,41 @@ Contact* loadContacts(const char* archiveName, Contact* root){
 int main(){
     const char* database = "database.txt";
     int choice;
-    Contact* telephoneDirectory = NULL;
+    Contact* phoneDirectory = NULL;
 
-    telephoneDirectory = loadContacts(database,telephoneDirectory);
-    char name[20];
-    char telephone[20];
+    phoneDirectory = loadContacts(database,phoneDirectory);
+    char name[50];
+    char phone[20];
     do{
         options();
         printf("Insira a sua Escolha: ");
         scanf("%d",&choice);
+        getchar();
         if(choice == 1){
             printf("Insira o nome: ");
-            scanf("%s",name);
-            printf("Insira o Telefone(sem espaços): ");
-            scanf("%s",telephone);
+            fgets(name,sizeof(name),stdin);
+            name[strcspn(name, "\n")] = '\0';
+            printf("Insira o telefone: ");
+            fgets(phone,sizeof(phone),stdin);
+            phone[strcspn(phone, "\n")] = '\0';
             for(int i = 0; name[i];i++){
                 name[i] = tolower(name[i]);
             }
-            telephoneDirectory = insertContact(telephoneDirectory, name, telephone);
-            system("clear||cls"); 
+            phoneDirectory = insertContact(phoneDirectory, name, phone);
+            continue; 
         }
         if(choice == 2){
             printf("Insira o nome: ");
-            scanf("%s",name);
-            system("clear||cls");
+            fgets(name,sizeof(name),stdin);
+            name[strcspn(name, "\n")] = '\0';
             for(int i = 0; name[i];i++){
                 name[i] = tolower(name[i]);
             }
-            searchContact(telephoneDirectory, name);
+            searchContact(phoneDirectory, name);
+            continue;
         }
         if(choice == 3){
-            if(telephoneDirectory == NULL){
-                system("clear||cls");
+            if(phoneDirectory == NULL){
                 printf(".");
                 fflush(stdout);
                 sleep(1);
@@ -195,23 +288,61 @@ int main(){
                 printf("Nenhum Contato foi Encontrado\n\n");
                 sleep(1);
             }else{
-                system("clear||cls");
-                listContacts(telephoneDirectory);
-                printf("\n");
+                int option = 0;
+                printf("1.A-Z\n");
+                printf("2.Z-A\n");
+                scanf("%d",&option);
+                if (option == 1){
+                    listContacts(phoneDirectory);
+                    printf("\n");
+                }
+                else if (option == 2){
+                    listContactsReverse(phoneDirectory);
+                    printf("\n");
+                }
+                else{
+                    printf("Opção Inválida");
+                }
             }
+            continue;
         }
         if(choice == 4){
             printf("Insira o nome: ");
-            scanf("%s",name);
+            fgets(name,sizeof(name),stdin);
+            name[strcspn(name, "\n")] = '\0';
             for(int i = 0; name[i];i++){
                 name[i] = tolower(name[i]);
             }
-            telephoneDirectory = removeContact(telephoneDirectory, name);
+            phoneDirectory = removeContact(phoneDirectory, name);
+            continue;
         }
-        if(choice < 0 || choice > 4){
+        if(choice == 5){
+            clearTerminal();
+            continue;
+        }
+        if(choice == 6){
+            int count;
+            count = countContacts(phoneDirectory);
+            printf("A Sua Lista Possui %d Contatos\n",count);
+            continue;
+        }
+        if(choice == 7){
+            printf("Insira o contato a ser alterado: ");
+            fgets(name,sizeof(name),stdin);
+            name[strcspn(name, "\n")] = '\0';
+            for(int i = 0; name[i];i++){
+                name[i] = tolower(name[i]);
+            }
+
+            editContact(phoneDirectory,name);
+            printf("Contato Alterado Com Sucesso!\n");
+            continue;
+        }
+        if(choice < 0 || choice > 7){
             printf("Insira uma opção válida\n");
-            choice = 5;
+            continue;
         }
     }while(choice != 0);
-    saveContacts(telephoneDirectory, database);
+    saveContacts(phoneDirectory, database);
+    free(phoneDirectory);
 }
