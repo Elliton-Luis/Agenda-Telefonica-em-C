@@ -91,11 +91,10 @@ O programa é controlado por um menu interativo *via terminal*, com as seguintes
 
 
 Ao encerrar a aplicação, os dados são automaticamente salvos no arquivo de texto.
-Estrutura do Arquivo de Dados
 
 O arquivo **database.txt** é utilizado para armazenar os contatos registrados. O formato adotado é simples, onde cada contato ocupa duas linhas consecutivas:
 
-* **nome_do_contato**
+* **nome do contato**
 * **telefone**
 
 Este padrão se repete para cada contato armazenado.
