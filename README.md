@@ -66,19 +66,19 @@ Salva todos os contatos da árvore no arquivo listaTelefonica.txt, sobrescrevend
 
 Carrega os contatos previamente salvos no arquivo listaTelefonica.txt para a estrutura em memória, permitindo continuidade entre execuções.
 
-#### editContact
+##### editContact
 Permite editar nome ou telefone de um contato.
 
-#### listContactsReverse
+##### listContactsReverse
 Lista contatos em ordem reversa (Z-A).
 
-#### countContacts
+##### countContacts
 Conta o número total de contatos cadastrados.
 
-#### formatPhone
+##### formatPhone
 Formata telefones com 11 dígitos para o padrão (xx) xxxxx-xxxx.
 
-#### clearTerminal
+##### clearTerminal
 
 Limpa a tela do terminal
 
