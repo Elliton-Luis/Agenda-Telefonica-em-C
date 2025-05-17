@@ -2,7 +2,7 @@
 
 ### Sobre o Projeto
 
-O CallTree é um sistema de agenda telefônica desenvolvido em *linguagem C*, utilizando a estrutura de Árvore Binária de Busca (BST) para armazenar, organizar e gerenciar contatos de forma eficiente. O programa permite cadastrar, buscar, listar e remover contatos, com persistência de dados em arquivo de texto.
+O CallTree é um sistema de agenda telefônica desenvolvido em *linguagem C*, utilizando a estrutura de Árvore Binária de Busca (BST) para armazenar, organizar e gerenciar contatos de forma eficiente. O programa permite cadastrar, buscar, listar, editar, contar e remover contatos, com persistência de dados em arquivo de texto.
 
 ### Características
 
@@ -66,21 +66,29 @@ Salva todos os contatos da árvore no arquivo listaTelefonica.txt, sobrescrevend
 
 Carrega os contatos previamente salvos no arquivo listaTelefonica.txt para a estrutura em memória, permitindo continuidade entre execuções.
 
----
+#### editContact
+Permite editar nome ou telefone de um contato.
 
+#### listContactsReverse
+Lista contatos em ordem reversa (Z-A).
+
+#### countContacts
+Conta o número total de contatos cadastrados.
+
+#### formatPhone
+Formata telefones com 11 dígitos para o padrão (xx) xxxxx-xxxx.
+
+#### clearTerminal
+
+Limpa a tela do terminal
+
+---
 ### Menu Principal do Programa
 
 O programa é controlado por um menu interativo *via terminal*, com as seguintes opções:
  
-*1.Criar contato*
+![image](https://github.com/user-attachments/assets/07493e1c-eb7f-47b7-84a8-70e31c6d7b1b)
 
-*2.Buscar contato*
-
-*3.Listar contatos*
-
-*4.Remover contato*
-
-*0.Sair e salvar*
 
 Ao encerrar a aplicação, os dados são automaticamente salvos no arquivo de texto.
 Estrutura do Arquivo de Dados
