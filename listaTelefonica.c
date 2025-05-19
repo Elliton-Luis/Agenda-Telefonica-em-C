@@ -13,6 +13,7 @@ typedef struct Contact{
 
 void formatPhone(char* phone, char* formattedPhone) {
     if (strlen(phone) != 11) {
+        printf("Formato incorreto");
         strcpy(formattedPhone, phone);
         return;
     }
@@ -21,6 +22,25 @@ void formatPhone(char* phone, char* formattedPhone) {
         phone[0], phone[1],
         phone[2], phone[3], phone[4], phone[5], phone[6],
         phone[7], phone[8], phone[9], phone[10]);
+}
+
+void saveInOrder(Contact* root, FILE* archive) {
+    if (root != NULL) {
+        saveInOrder(root->left, archive);
+        fprintf(archive, "%s\n%s\n", root->name, root->phone);
+        saveInOrder(root->right, archive);
+    }
+}
+
+void saveContacts(Contact* root, const char* archiveName) {
+    FILE* archive = fopen(archiveName, "w");
+    if (!archive) {
+        printf("Erro ao abrir o arquivo para salvar!\n");
+        return;
+    }
+
+    saveInOrder(root, archive);
+    fclose(archive);
 }
 
 Contact* createContact(char name[],char phone[]){
@@ -38,12 +58,13 @@ Contact* insertContact(Contact* root,char name[],char phone[]){
     }
     if(strcmp(name,root->name) == 0){
         printf("\nEsse nome já existe na nossa lista!!\n");
+        return root;
     }
     if(strcmp(name , root->name) < 0){
         root->left = insertContact(root->left,name, phone);
-    }else if(strcmp(name , root->name) > 0){
+    }
+    if(strcmp(name , root->name) > 0){
         root->right = insertContact(root->right,name, phone);
-    }else{
     }
     return root;
 }
@@ -117,14 +138,16 @@ Contact* editContact(Contact* root, char name []){
         getchar();
         if (option == 1){
                     printf("Nome atual: %s\n",root->name);
-                    char newname[50];
+                    char newname[100];
                     printf("Insira o novo nome: ");
                     fgets(newname,sizeof(newname),stdin);
                     newname[strcspn(newname, "\n")] = '\0';
                     for(int i = 0; newname[i];i++){
                         newname[i] = tolower(newname[i]);
                     }
-                    strcpy(root->name,newname);
+                    insertContact(root,newname,root->phone);
+                    removeContact(root,root->name);
+                    
                     return NULL;
                 }
                 if (option == 2){
@@ -163,7 +186,7 @@ void listContacts(Contact* root){
 }
 
 void options(){
-    printf("----- Opções -----\n");
+    printf("\n----- Opções -----\n");
     printf("1. Criar Contato\n");
     printf("2. Buscar Contato\n");
     printf("3. Listar Contatos\n");
@@ -174,30 +197,11 @@ void options(){
     printf("0. Sair e Salvar\n\n");
 }
 
-void saveInOrder(Contact* root, FILE* archive) {
-    if (root != NULL) {
-        saveInOrder(root->left, archive);
-        fprintf(archive, "%s\n%s\n", root->name, root->phone);
-        saveInOrder(root->right, archive);
-    }
-}
-
 int countContacts(Contact* root){
     if(root == NULL){
         return 0;
     }
     return 1 + countContacts(root->left) + countContacts(root->right);}
-
-void saveContacts(Contact* root, const char* archiveName) {
-    FILE* archive = fopen(archiveName, "w");
-    if (!archive) {
-        printf("Erro ao abrir o arquivo para salvar!\n");
-        return;
-    }
-
-    saveInOrder(root, archive);
-    fclose(archive);
-}
 
 void clearTerminal(){
     system("clear || cls");
@@ -221,7 +225,7 @@ Contact* loadContacts(const char* archiveName, Contact* root){
         fclose(archive);
         return root;
     }
-    char name[50]; 
+    char name[100]; 
     char phone[20];
     char line[25];
 
@@ -244,7 +248,7 @@ int main(){
     Contact* phoneDirectory = NULL;
 
     phoneDirectory = loadContacts(database,phoneDirectory);
-    char name[50];
+    char name[100];
     char phone[20];
     do{
         options();

@@ -1,96 +1,62 @@
-aline castro
-75999998877
-amanda
-75998008008
-arthur
-75998888777
-beatriz
-75998222111
-bruno teixeira
-75998877665
-caio
-75991234567
-carol mendes
-75998123123
-catarina
-75998111222
-clarice
-75998777444
-daniel
-75998333555
-davi henrique
-75999001122
-diego lima
-75999111223
-eduardo
-75998666555
-felipe sousa
-75998765432
-gabriel
-75998123777
-giovanna
-11998876655
-gustavo
-75998999888
-helena lopes
-75998123456
-isabela
-75998123888
-joana
-75998009009
-joao marcos
-11998765432
-juliana
-11992234455
-lara
-75998777888
-lara vieira
-75998123456
-laura rocha
-75998122333
-leonardo
-75998999777
-livia santos
-21999987766
-lucas vinicius
-75999111222
-luciana
-75998333222
-luis
-75991231234
-manuela
-75998555333
-marco antonio
-21998887766
-maria clara
-75998888555
-mariana
-75998555777
-mateus
-75998006006
-milena
-75998007007
-nicolas
-75998765432
-paulo ricardo
-75998333444
-pedro
-75999999999
-priscila
-75998123999
-rafael
-75998999333
-ricardo
-88999112233
-roberto silva
-75998712332
-sofia
-75998777666
-thiago
-75998666333
-vinicius
-75998999111
-vitor
-75998444555
-yara
-75958877564
+alexandre cunha
+74196385236
+ana leticia
+74123698555
+beatriz ramos
+88006611223
+bruno lopes
+95114785236
+caio almeida
+80011223311
+caio andrade
+75512369852
+davi silva
+80706050403
+eduarda silva
+98785236974
+elliton luis
+75978867564
+felipe moura
+74195135700
+fernando torres
+74185296300
+maria cecília
+75648392001
+mariana duarte
+88014725836
+matheus rocha
+75123698520
+melissa monteiro
+99887766551
+melissa rocha
+80974125836
+miguel duarte
+74125896300
+nathan moura
+91011121355
+natália monteiro
+78945685214
+nicolas almeida
+74123698511
+otávio correia
+95123698520
+otávio vieira
+78996325811
+pedro henrique
+88957411234
+rafael augusto
+89632574120
+rodrigo pires
+74125896314
+valentina melo
+78901234560
+victor azevedo
+96325874136
+vinícius cardoso
+96385274120
+vinícius lopes
+88912365478
+vitória martins
+79014725836
+yasmin cunha
+78974125896
