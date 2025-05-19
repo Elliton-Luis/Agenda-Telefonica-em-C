@@ -89,6 +89,35 @@ O programa é controlado por um menu interativo *via terminal*, com as seguintes
  
 ![image](https://github.com/user-attachments/assets/07493e1c-eb7f-47b7-84a8-70e31c6d7b1b)
 
+1.Criar uUm Novo Contato.
+
+![image](https://github.com/user-attachments/assets/bcf329f2-d954-441d-b67f-3361244ab20d)
+
+2.Busca o Número De Um Contato Através Do Nome.
+
+![image](https://github.com/user-attachments/assets/388e1f36-81d7-4e86-9257-07777e34ed35)
+
+3.Lista Todos os Contatos seja de A-Z ou de Z-A.
+
+![image](https://github.com/user-attachments/assets/f0b7dba0-0ff3-48bf-8585-37c34a95f813)
+
+4.Removerá Um Contato Com Base No Nome.
+
+![image](https://github.com/user-attachments/assets/10d2c9fd-9c9a-47b1-8b60-caaa5c91e5d0)
+
+5.Limpará o Terminal, deixando apenas as opções.
+
+![image](https://github.com/user-attachments/assets/6e44fc2a-da56-45d7-9a06-9f24ffe1543d)
+
+6.Irá Contar Todos Os Contatos Presentes Na Lista De Contatos.
+
+![image](https://github.com/user-attachments/assets/baa5dfd2-2d36-4e74-a72e-343ee1bec87c)
+
+7.Irá Editar o Nome ou o Telefone De Um Contato.
+
+![image](https://github.com/user-attachments/assets/2947bdc7-40dc-4018-9e76-624de2f6daf6)
+
+0.Salva os Contatos em Ordem A-Z no Arquivo database.txt e Finaliza a Aplicação·
 
 Ao encerrar a aplicação, os dados são automaticamente salvos no arquivo de texto.
 
