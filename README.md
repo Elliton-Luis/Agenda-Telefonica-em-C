@@ -38,31 +38,31 @@ typedef struct Contact {
 
 ### Principais Funcionalidades
 
-##### Função createContact
+##### createContact
 
 Cria e inicializa um novo contato a partir do nome e telefone informados pelo usuário.
 
-##### Função insertContact
+##### insertContact
 
 Insere um novo contato na árvore, posicionando-o de forma ordenada pelo nome, respeitando as regras da árvore binária de busca.
 
-##### Função searchContact
+##### searchContact
 
 Realiza a busca de um contato pelo nome, retornando o número de telefone correspondente, caso encontrado.
 
-##### Função removeContact
+##### removeContact
 
 Remove um contato da árvore, ajustando a estrutura para manter a ordenação e integridade da árvore após a exclusão.
 
-##### Função listContacts
+##### listContacts
 
 Percorre a árvore binária em ordem alfabética (in-order) e exibe todos os contatos cadastrados.
 
-##### Função saveContacts
+##### saveContacts
 
 Salva todos os contatos da árvore no arquivo listaTelefonica.txt, sobrescrevendo o conteúdo anterior e garantindo a persistência dos dados.
 
-##### Função loadContacts
+##### loadContacts
 
 Carrega os contatos previamente salvos no arquivo listaTelefonica.txt para a estrutura em memória, permitindo continuidade entre execuções.
 
