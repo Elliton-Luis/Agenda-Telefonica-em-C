@@ -89,7 +89,7 @@ O programa é controlado por um menu interativo *via terminal*, com as seguintes
  
 ![image](https://github.com/user-attachments/assets/07493e1c-eb7f-47b7-84a8-70e31c6d7b1b)
 
-1.Criar uUm Novo Contato.
+1.Criar Um Novo Contato.
 
 ![image](https://github.com/user-attachments/assets/bcf329f2-d954-441d-b67f-3361244ab20d)
 
@@ -113,9 +113,10 @@ O programa é controlado por um menu interativo *via terminal*, com as seguintes
 
 ![image](https://github.com/user-attachments/assets/baa5dfd2-2d36-4e74-a72e-343ee1bec87c)
 
-7.Irá Editar o Nome ou o Telefone De Um Contato.
+7.Irá Editar o Telefone De Um Contato.
 
-![image](https://github.com/user-attachments/assets/2947bdc7-40dc-4018-9e76-624de2f6daf6)
+![image](https://github.com/user-attachments/assets/bb26074c-67e1-4e7d-ad10-92ec6092139a)
+
 
 0.Salva os Contatos em Ordem A-Z no Arquivo database.txt e Finaliza a Aplicação·
 
