@@ -1,62 +1,30 @@
-alexandre cunha
-74196385236
-ana leticia
-74123698555
-beatriz ramos
-88006611223
-bruno lopes
-95114785236
-caio almeida
-80011223311
-caio andrade
-75512369852
-davi silva
-80706050403
-eduarda silva
-98785236974
-elliton luis
-75978867564
-felipe moura
-74195135700
-fernando torres
-74185296300
-maria cecília
-75648392001
-mariana duarte
-88014725836
-matheus rocha
-75123698520
-melissa monteiro
-99887766551
-melissa rocha
-80974125836
-miguel duarte
-74125896300
-nathan moura
-91011121355
-natália monteiro
-78945685214
-nicolas almeida
-74123698511
-otávio correia
-95123698520
-otávio vieira
-78996325811
-pedro henrique
-88957411234
-rafael augusto
-89632574120
-rodrigo pires
-74125896314
-valentina melo
-78901234560
-victor azevedo
-96325874136
-vinícius cardoso
-96385274120
-vinícius lopes
-88912365478
-vitória martins
-79014725836
-yasmin cunha
-78974125896
+andre
+71999765432
+caio
+75999777111
+daniel
+75999555666
+elliton
+75992488792
+felipe
+74988777888
+gustavo
+75999666677
+igor
+75999888000
+leandro
+74988654321
+lucas
+75999111222
+marcos
+74988123456
+mateus
+75999888999
+paulo
+75999444555
+rafael
+75999900123
+rodrigo
+75999555444
+thiago
+75999488583
