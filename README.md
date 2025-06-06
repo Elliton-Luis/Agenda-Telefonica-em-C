@@ -36,52 +36,6 @@ typedef struct Contact {
 
   Cada contato armazena o nome, telefone e ponteiros para os nós esquerdo e direito da árvore, garantindo que a estrutura permaneça ordenada de acordo com os nomes cadastrados.
 
-### Principais Funcionalidades
-
-##### createContact
-
-Cria e inicializa um novo contato a partir do nome e telefone informados pelo usuário.
-
-##### insertContact
-
-Insere um novo contato na árvore, posicionando-o de forma ordenada pelo nome, respeitando as regras da árvore binária de busca.
-
-##### searchContact
-
-Realiza a busca de um contato pelo nome, retornando o número de telefone correspondente, caso encontrado.
-
-##### removeContact
-
-Remove um contato da árvore, ajustando a estrutura para manter a ordenação e integridade da árvore após a exclusão.
-
-##### listContacts
-
-Percorre a árvore binária em ordem alfabética (in-order) e exibe todos os contatos cadastrados.
-
-##### saveContacts
-
-Salva todos os contatos da árvore no arquivo listaTelefonica.txt, sobrescrevendo o conteúdo anterior e garantindo a persistência dos dados.
-
-##### loadContacts
-
-Carrega os contatos previamente salvos no arquivo listaTelefonica.txt para a estrutura em memória, permitindo continuidade entre execuções.
-
-##### editContact
-Permite editar nome ou telefone de um contato.
-
-##### listContactsReverse
-Lista contatos em ordem reversa (Z-A).
-
-##### countContacts
-Conta o número total de contatos cadastrados.
-
-##### formatPhone
-Formata telefones com 11 dígitos para o padrão (xx) xxxxx-xxxx.
-
-##### clearTerminal
-
-Limpa a tela do terminal
-
 ---
 ### Menu Principal do Programa
 
